@@ -9,7 +9,8 @@ const dataTestController = require('../Controllers/TestDataController');
 //getData connects to getData router
 router.get('/', dataTestController.baseRoute);
 
-// router.get('/getData', dataTestController.getData);
+// post user info frm sign-up
+router.post('/register', dataTestController.userInfo);
 
 //create
 router.post('/create', dataTestController.createPost);

@@ -5,7 +5,7 @@ const app = express(); //initalise app with express
 
 const bodyParser = require('body-parser');
 
-const routes = require('./Routes/TestDataRoutes');
+const routes = require('./Routes/DataRoutes');
 
 // body parsers
 app.use(bodyParser.json());

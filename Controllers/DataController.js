@@ -55,7 +55,7 @@ exports.getSinglePost = async (req, res) => {
 };
 
 //test function to create user profile
-exports.userInfo = async (req, res, next) => {
+exports.userInfo = async (req, res) => {
   console.log(req.body);
   let newUser = new User({
     firstName: req.body.firstName,
@@ -64,7 +64,7 @@ exports.userInfo = async (req, res, next) => {
     username: req.body.username,
     password: req.body.password
   });
-  await new User(req.body).save((err, data) => {
+  await newUser.save((err, data) => {
     if (err) {
       // if there is an error send the following response
       res.status(500).json({

@@ -27,4 +27,10 @@ router.get('/getPosts', dataController.getPosts);
 //read one post
 router.get('/getPost/:id', dataController.getSinglePost);
 
+//edit one post
+router.put('/post/:id/update', dataController.updatePost);
+
+//delete one post
+router.delete('/:id/delete', dataController.deletePost);
+
 module.exports = router;

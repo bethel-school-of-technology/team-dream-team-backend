@@ -6,25 +6,24 @@ const dataController = require('../controllers/DataController');
 
 //connects to routes in controller:
 //baseRoute connects to /router
-//getData connects to getData router
 router.get('/', dataController.baseRoute);
 
-// post user info frm sign-up
+//user sign up 
 router.post('/register', dataController.userInfo);
 
-//login
+//user login
 router.post('/login', dataController.UserLogin);
 
 //userProfile
 router.get('/profile', dataController.userProfile);
 
-//create
+//create bible verse
 router.post('/create', dataController.createPost);
 
-//read all posts
+//read all bible verses
 router.get('/getPosts', dataController.getPosts);
 
-//read one post
+//read one bible verse
 router.get('/getPost/:id', dataController.getSinglePost);
 
 module.exports = router;

@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 //imports controller
-const dataController = require('../Controllers/DataController');
+const dataController = require('../controllers/DataController');
 
 //connects to routes in controller:
 //baseRoute connects to /router
@@ -11,6 +11,12 @@ router.get('/', dataController.baseRoute);
 
 // post user info frm sign-up
 router.post('/register', dataController.userInfo);
+
+//login
+router.post('/login', dataController.UserLogin);
+
+//userProfile
+router.get('/profile', dataController.userProfile);
 
 //create
 router.post('/create', dataController.createPost);

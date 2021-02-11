@@ -12,7 +12,3 @@ const PostSchema = new mongoose.Schema(
   );
 
   module.exports = mongoose.model('posts', PostSchema);
-
-  //test comment for new branch
-  //test comment to
-  //test commentary

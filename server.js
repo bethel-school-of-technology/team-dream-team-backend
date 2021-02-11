@@ -21,8 +21,8 @@ db.once("open", () => console.log("connected to the database"));
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
 //allows access to models throughout the application
-require('./Models/User');
-require('./Models/Post');
+require('./models/User');
+require('./models/Post');
 
 //require app.js
 const app = require("./app");

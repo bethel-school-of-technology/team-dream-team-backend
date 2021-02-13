@@ -165,7 +165,7 @@ res.status(500).json({
   });
 }
 
-//test function to create user profile
+//function to create user profile
 exports.userInfo = async (req, res) => {
   console.log(req.body);
   let newUser = new User({
@@ -183,9 +183,10 @@ exports.userInfo = async (req, res) => {
       });
     } else {
       // if success send the following response
-      res.status(200).json({
-        message: "User Info Created",
-        data,
+        res.json({
+          message: "User Info Created",
+          status: 403,
+          data
       });
     }
   });

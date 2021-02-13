@@ -28,6 +28,6 @@ require('./models/Post');
 const app = require("./app");
 
 //starts server on port
-const server = app.listen(3000, () => {
+const server = app.listen(5000, () => {
   console.log(`Express running PORT ${server.address().port}`);
 });

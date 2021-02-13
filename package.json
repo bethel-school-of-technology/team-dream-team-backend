@@ -18,6 +18,8 @@
     "jsonwebtoken": "^8.5.1",
     "logger": "0.0.1",
     "mongoose": "^5.11.15",
+    "morgan": "^1.10.0",
+    "nodemailer": "^6.4.18",
     "nodemon": "^2.0.7",
     "parser": "^0.1.4"
   }

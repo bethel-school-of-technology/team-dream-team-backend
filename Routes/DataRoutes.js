@@ -32,4 +32,6 @@ router.put('/post/:id/update', dataController.updatePost);
 //delete one post
 router.delete('/:id/delete', dataController.deletePost);
 
+//image upload
+router.post('/postverse', dataController.imagePost)
 module.exports = router;

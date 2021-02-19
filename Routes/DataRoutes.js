@@ -37,4 +37,7 @@ router.delete('/:id/delete', dataController.deletePost);
 router.get('/verify/:token', userController.confirmationPost);
 // router.post('/resend', dataController.resendTokenPost);
 
+//image upload
+router.post('/postverse', dataController.imagePost)
+
 module.exports = router;

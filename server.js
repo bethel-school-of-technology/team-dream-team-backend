@@ -24,6 +24,7 @@ db.on("error", console.error.bind(console, "MongoDB connection error:"));
 require('./models/User');
 require('./models/Post');
 require('./models/Token');
+require('./models/Images');
 
 //require app.js
 const app = require("./app");

@@ -13,15 +13,22 @@ const UserSchema = new mongoose.Schema({
   email: {
     type: String,
     require: true,
-  },
-  username: {
-    type: String,
-    require: true,
+    unique: true,
   },
   password: {
     type: String,
     required: true,
   },
+  passwordResetToken: {
+    type: String
+  },
+  passwordResetExpires: {
+    type: Date}
+    ,
+  isVerified: { 
+    type: Boolean, 
+    default: false 
+  }
 });
 
 module.exports = mongoose.model("data", UserSchema);

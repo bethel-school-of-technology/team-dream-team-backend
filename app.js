@@ -2,13 +2,10 @@
 
 const express = require("express"); //import express
 const app = express(); //initalise app with express
-var router = express.Router();
-var nodemailer = require("nodemailer");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const logger = require("morgan");
 const routes = require("./routes/DataRoutes");
-
 
 app.use(bodyParser.json());
 //body-parser handles HTTP POST requests.

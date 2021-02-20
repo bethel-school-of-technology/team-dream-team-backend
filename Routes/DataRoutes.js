@@ -34,7 +34,7 @@ router.put('/post/:id/update', dataController.updatePost);
 router.delete('/:id/delete', dataController.deletePost);
 
 //routes used for token confirmation
-router.get('/verify/:token', userController.confirmationPost);
+router.get('/verify/:email/:token', userController.confirmEmail);
 // router.post('/resend', dataController.resendTokenPost);
 
 //image upload

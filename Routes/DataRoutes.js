@@ -4,6 +4,8 @@ const router = express.Router();
 //imports controller
 const dataController = require('../controllers/DataController');
 const userController = require('../controllers/UserController');
+const bioController = require('../controllers/BioController');
+const ivpostController = require('../controllers/BioController');
 
 //connects to routes in controller:
 //baseRoute connects to /router
@@ -38,6 +40,9 @@ router.get('/verify/:email/:token', userController.confirmEmail);
 // router.post('/resend', dataController.resendTokenPost);
 
 //image upload
-router.post('/postverse', dataController.imagePost)
+router.post('/postverse', ivpostController.imagePost);
+
+router.post('/createbio', bioController.createBio);
+//router.put('/bio', BioController.updateBio);
 
 module.exports = router;

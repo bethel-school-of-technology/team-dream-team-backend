@@ -8,10 +8,10 @@ exports.baseRoute = async (req, res) => {
 
   exports.createBio = async (req, res) => {
     console.log(req.body);
-    let userBio = new CreateBio({
-        userBio: req.body.userBio
-    });
-    await new userBio(req.body).save((err, data) => {
+  let userBio = new CreateBio({
+    userBio: req.body.userBio
+  });
+    await userBio.save((err, data) => {
       if (err) {
         // if there is an error send the following response
         res.status(500).json({
@@ -26,3 +26,4 @@ exports.baseRoute = async (req, res) => {
       }
     });
   };
+  

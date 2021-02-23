@@ -25,6 +25,7 @@ require('./models/User');
 require('./models/Post');
 require('./models/Token');
 require('./models/Images');
+require('./models/Bio');
 
 //require app.js
 const app = require("./app");

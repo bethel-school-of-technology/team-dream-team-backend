@@ -15,7 +15,7 @@ router.get('/', dataController.baseRoute);
 router.post('/register', userController.userInfo);
 
 //user login
-router.post('/login', userController.UserLogin);
+router.post('/', userController.UserLogin);
 
 //userProfile
 router.get('/profile', dataController.userProfile);

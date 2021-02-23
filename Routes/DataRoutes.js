@@ -5,7 +5,7 @@ const router = express.Router();
 const dataController = require('../controllers/DataController');
 const userController = require('../controllers/UserController');
 const bioController = require('../controllers/BioController');
-const ivpostController = require('../controllers/BioController');
+const ivpostController = require('../controllers/IvpostController');
 
 //connects to routes in controller:
 //baseRoute connects to /router

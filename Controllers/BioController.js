@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const { restart } = require("nodemon");
-const CreateBio = mongoose.model("bio");
+const CreateBio = mongoose.model("bios");
 
 exports.baseRoute = async (req, res) => {
     res.send("Server Running");

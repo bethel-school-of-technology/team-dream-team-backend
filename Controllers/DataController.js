@@ -2,9 +2,6 @@ const mongoose = require("mongoose");
 const { restart } = require("nodemon");
 const PostMessage = mongoose.model("posts");
 
-
-
-
 var tokenService = require("../services/auth");
 
 
@@ -58,25 +55,6 @@ exports.getPosts = async (req, res) => {
   res.json(data); //send var as a json
 };
 
-// function to create a post
-//--------------------------------------------------------------------------------------------------
-exports.createPost = async (req, res) => {
-  // we use mongodb's save functionality here
-  await new PostMessage(req.body).save((err, data) => {
-    if (err) {
-      // if there is an error send the following response
-      res.status(500).json({
-        message: "Something went wrong, please try again later.",
-      });
-    } else {
-      // if success send the following response
-      res.status(200).json({
-        message: "Post Created",
-        data,
-      });
-    }
-  });
-};
 
 //function to get a single post
 //--------------------------------------------------------------------------------------------------

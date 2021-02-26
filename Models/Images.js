@@ -2,8 +2,14 @@ const mongoose = require("mongoose");
 
 //create schema
 const ImagesSchema = new mongoose.Schema({
-    img: { data: Buffer, contentType: String 
+  newImage: { 
+    type: String, 
+    // contentType: String
+  },
+  refId: {
+    type: mongoose.Types.ObjectId
   }
+
 });
 
 module.exports = mongoose.model("images", ImagesSchema);

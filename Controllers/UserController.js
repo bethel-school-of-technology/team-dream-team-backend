@@ -192,60 +192,60 @@ exports.confirmEmail = function (req, res, next) {
 
 //function to reissue confirmation tokens once token are expiried
 //--------------------------------------------------------------------------------------------------
-exports.resendTokenPost = function (req, res, next) {
-  User.findOne({ email: req.body.email }, function (err, user) {
-    if (!user)
-      return res
-        .status(400)
-        .send({ msg: "We were unable to find a user with that email." });
-    if (user.isVerified)
-      return res.status(400).send({
-        msg: "This account has already been verified. Please log in.",
-      });
+// exports.resendTokenPost = function (req, res, next) {
+//   User.findOne({ email: req.body.email }, function (err, user) {
+//     if (!user)
+//       return res
+//         .status(400)
+//         .send({ msg: "We were unable to find a user with that email." });
+//     if (user.isVerified)
+//       return res.status(400).send({
+//         msg: "This account has already been verified. Please log in.",
+//       });
 
-    // Create a verification token, save it, and send email
-    var token = new Token({
-      _userId: user._id,
-      token: crypto.randomBytes(16).toString("hex"),
-    });
+//     // Create a verification token, save it, and send email
+//     var token = new Token({
+//       _userId: user._id,
+//       token: crypto.randomBytes(16).toString("hex"),
+//     });
 
-    // Save the token
-    token.save(function (err) {
-      if (err) {
-        return res.status(500).send({ msg: err.message });
-      }
+//     // Save the token
+//     token.save(function (err) {
+//       if (err) {
+//         return res.status(500).send({ msg: err.message });
+//       }
 
-      // Send the email
-      var transporter = nodemailer.createTransport({
-        service: "gmail",
-        host: "smtp.gmail.com",
-        port: "456",
-        // ssl = true,
-        auth: {
-          user: "shareverseapponline@gmail.com",
-          pass: "Tigerprince1!",
-        },
-      });
-      var mailOptions = {
-        from: "shareverseapponline@gmail.com",
-        to: user.email,
-        subject: "Account Verification Token",
-        text:
-          "Hello,\n\n" +
-          "Please verify your account by clicking the link: \nhttp://" +
-          req.headers.host +
-          "/confirmation/" +
-          token.token +
-          ".\n",
-      };
-      transporter.sendMail(mailOptions, function (err) {
-        if (err) {
-          return res.status(500).send({ msg: err.message });
-        }
-        res
-          .status(200)
-          .send("A verification email has been sent to " + user.email + ".");
-      });
-    });
-  });
-};
+//       // Send the email
+//       var transporter = nodemailer.createTransport({
+//         service: "gmail",
+//         host: "smtp.gmail.com",
+//         port: "456",
+//         // ssl = true,
+//         auth: {
+//           user: "shareverseapponline@gmail.com",
+//           pass: "Tigerprince1!",
+//         },
+//       });
+//       var mailOptions = {
+//         from: "shareverseapponline@gmail.com",
+//         to: user.email,
+//         subject: "Account Verification Token",
+//         text:
+//           "Hello,\n\n" +
+//           "Please verify your account by clicking the link: \nhttp://" +
+//           req.headers.host +
+//           "/confirmation/" +
+//           token.token +
+//           ".\n",
+//       };
+//       transporter.sendMail(mailOptions, function (err) {
+//         if (err) {
+//           return res.status(500).send({ msg: err.message });
+//         }
+//         res
+//           .status(200)
+//           .send("A verification email has been sent to " + user.email + ".");
+//       });
+//     });
+//   });
+// };

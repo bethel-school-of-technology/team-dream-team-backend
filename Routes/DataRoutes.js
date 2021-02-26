@@ -13,18 +13,17 @@ router.get('/', dataController.baseRoute);
 
 //user sign up 
 router.post('/register', userController.userInfo);
-
 //user login
 router.post('/', userController.UserLogin);
+//routes used for token confirmation
+router.get('/verify/:email/:token', userController.confirmEmail);
+// router.post('/resend', dataController.resendTokenPost);
 
 //userProfile
 router.get('/profile', dataController.userProfile);
 
-//create bible verse
-router.post('/create', dataController.createPost);
-
 //read all bible verses
-router.get('/getPosts', dataController.getPosts);
+router.get('/getMs', dataController.getPosts);
 
 //read one bible verse
 router.get('/getPost/:id', dataController.getSinglePost);
@@ -35,14 +34,16 @@ router.put('/post/:id/update', dataController.updatePost);
 //delete one post
 router.delete('/:id/delete', dataController.deletePost);
 
-//routes used for token confirmation
-router.get('/verify/:email/:token', userController.confirmEmail);
-// router.post('/resend', dataController.resendTokenPost);
-
-//image upload
+//post image
 router.post('/postverse', ivpostController.imagePost);
+//get image 
+router.get('./getimage/:id', ivpostController.getImagePost)
+//post bible verse
+router.post('/create', ivpostController.createBibleVerse);
+//get bible verse
+router.get('/getverse/:id', ivpostController.getBibleVersePost);
 
-router.post('/createbio', bioController.createBio);
 //router.put('/bio', BioController.updateBio);
+router.post('/createbio', bioController.createBio);
 
 module.exports = router;

@@ -7,43 +7,36 @@ const userController = require('../controllers/UserController');
 const bioController = require('../controllers/BioController');
 const ivpostController = require('../controllers/IvpostController');
 
-//connects to routes in controller:
-//baseRoute connects to /router
-router.get('/', dataController.baseRoute);
 
-//user sign up 
+// regisrer/login routes---------------------------------------------------------
+router.get('/', dataController.baseRoute); // shows server runing
 router.post('/register', userController.userInfo);
-//user login
 router.post('/', userController.UserLogin);
-//routes used for token confirmation
 router.get('/verify/:email/:token', userController.confirmEmail);
 // router.post('/resend', dataController.resendTokenPost);
+//--------------------------------------------------------------------------------
 
-//userProfile
+// router.put('/bio', BioController.updateBio);
+router.post('/createbio', bioController.createBio);
+
 router.get('/profile', dataController.userProfile);
-
-//read all bible verses
-router.get('/getMs', dataController.getPosts);
-
-//read one bible verse
+router.get('/getall', dataController.getPosts);
 router.get('/getPost/:id', dataController.getSinglePost);
-
-//edit one post
 router.put('/post/:id/update', dataController.updatePost);
-
-//delete one post
 router.delete('/:id/delete', dataController.deletePost);
 
-//post image
-router.post('/postverse', ivpostController.imagePost);
-//get image 
-router.get('./getimage/:id', ivpostController.getImagePost)
-//post bible verse
-router.post('/create', ivpostController.createBibleVerse);
-//get bible verse
-router.get('/getverse/:id', ivpostController.getBibleVersePost);
+// routes for posting bible verse image and inputs -------------------------------
+router.post('/postverse', ivpostController.imagePost);//post image
+router.get('./getimage/:id', ivpostController.getImagePost)//get image 
+router.post('/create', ivpostController.createBibleVerse); //post bible verse
+router.get('/getverse/:id', ivpostController.getBibleVersePost); //get bible verse by id
+//--------------------------------------------------------------------------------
 
-//router.put('/bio', BioController.updateBio);
-router.post('/createbio', bioController.createBio);
+
+router.post('/imga', ivpostController.createGalleryVerse); //get gallery post from imga.js
+router.post('/imgb', ivpostController.createGalleryVerse); //get gallery post from imgb.js
+
+// re-useable bible post verse/image component
+router.post('/globalpost', ivpostController.createGalleryVerse); //get bibbe verse from imga.js
 
 module.exports = router;

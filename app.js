@@ -6,6 +6,8 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const logger = require("morgan");
 const routes = require("./routes/DataRoutes");
+const ImageRouter = require('./routes/image');
+
 
 app.use(bodyParser.json());
 //body-parser handles HTTP POST requests.
@@ -19,6 +21,12 @@ app.use(express.json());
 app.use(logger("dev"));
 
 //middleware to import routes
+app.use('/image', ImageRouter);
 app.use("/", routes);
 
+
+app.use('/search', express.static('search'));
+
 module.exports = app;
+
+

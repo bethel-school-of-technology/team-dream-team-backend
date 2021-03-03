@@ -44,6 +44,42 @@ exports.createBibleVerse = async (req, res) => {
   });
 };
 
+//function to get text and image from gallery
+// ------------------------------------------------------------------------------------------------
+exports.createGalleryVerse = async (req, res) => {
+  // we use mongodb's save functionality here
+  console.log(req.body)
+  // res.send("recieved");
+  await new PostBibleVerse(req.body).save( async (err, data) => {
+    if (err) {
+      // if there is an error send the following response
+      res.status(500).json({
+        message: "Something went wrong, please try again later.",
+      });
+    } 
+    // else {
+    //   // if success send the following response
+    //   await new VImage({
+    //     imgUrl: req.body.data_url,
+    //   }) 
+    //   .save((error, image) => {
+    //     if (error) {
+    //   // if there is an error send the following response
+    //   res.status(500).json({
+    //     message: "Something went wrong, please try again later.",
+    //   });
+    //    }
+       else {
+        res.status(200).json({
+          message: "Post Created",
+          data
+        });
+      }
+    //  })
+    // }
+  });
+};
+
 //function to get a single post
 //--------------------------------------------------------------------------------------------------
 exports.getBibleVersePost = async (req, res) => {

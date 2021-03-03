@@ -2,33 +2,36 @@
 
 const mongoose = require("mongoose");
 
-// MongoDB database
-const dbRoute =
-  "mongodb+srv://Julianne:Shareverse1234@svcluster.hlmba.mongodb.net/svs_data?retryWrites=true&w=majority";
-
-// connects our back end code with the database
-mongoose.connect(
-  dbRoute,
-  { useNewUrlParser: true },
-  { useUnifiedTopology: true }
-);
-
-let db = mongoose.connection;
-
-db.once("open", () => console.log("connected to the database"));
-
-// checks if connection with the database is successful
-db.on("error", console.error.bind(console, "MongoDB connection error:"));
-
 //allows access to models throughout the application
 require('./models/User');
 require('./models/Post');
 require('./models/Token');
 require('./models/Images');
 require('./models/Bio');
+require('./models/Gallery');
 
 //require app.js
 const app = require("./app");
+
+// MongoDB database URI path
+const mongoURI =
+  "mongodb+srv://Julianne:Shareverse1234@svcluster.hlmba.mongodb.net/svs_data?retryWrites=true&w=majority";
+
+// connects backend to database
+const conn = mongoose.createConnection(mongoURI);
+
+mongoose.connect(
+  mongoURI, { useNewUrlParser: true }, 
+            { useUnifiedTopology: true });
+
+//allows gf to find specific file from db collection
+
+conn.once('open', () => {
+  console.log('Connection Successful')
+})
+
+// checks if connection with the database is successful
+conn.on("error", console.error.bind(console, "MongoDB connection error:"));
 
 //starts server on port
 const server = app.listen(5000, () => {

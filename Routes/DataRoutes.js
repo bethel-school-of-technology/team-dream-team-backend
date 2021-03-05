@@ -27,16 +27,16 @@ router.delete('/:id/delete', dataController.deletePost);
 
 // routes for posting bible verse image and inputs -------------------------------
 router.post('/postverse', ivpostController.imagePost);//post image
-router.get('./getimage/:id', ivpostController.getImagePost)//get image 
-router.post('/create', ivpostController.createBibleVerse); //post bible verse
-router.get('/getverse/:id', ivpostController.getBibleVersePost); //get bible verse by id
+router.post('/createpostverse', ivpostController.createBibleVerse); //post bible verse
 //--------------------------------------------------------------------------------
 
+//rouets for geting bible verse image and inputs 
+router.get('/getimage/:id', ivpostController.getImagePost)//get image 
+router.get('/getverse/:id', ivpostController.getBibleVersePost); //get bible verse by id
 
-router.post('/imga', ivpostController.createGalleryVerse); //get gallery post from imga.js
-router.post('/imgb', ivpostController.createGalleryVerse); //get gallery post from imgb.js
 
-// re-useable bible post verse/image component
-router.post('/globalpost', ivpostController.createGalleryVerse); //get bibbe verse from imga.js
+// FOR GALLERY 
+router.post('/waterfall', ivpostController.getImagePost); //get gallery post from imga.js
+router.post('/greenmount', ivpostController.createGalleryVerse); //get gallery post from imgb.js
 
 module.exports = router;

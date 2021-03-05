@@ -6,6 +6,9 @@ const ImagesSchema = new mongoose.Schema({
     type: String,
     // contentType: String
   },
+  name: {
+    type: String,
+  },
   refId: {
     type: mongoose.Types.ObjectId,
   },

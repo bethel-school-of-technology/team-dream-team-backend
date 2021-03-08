@@ -5,6 +5,7 @@ const PostSchema = new mongoose.Schema(
     {
       title: String,
       body: String,
+      name: String,
     },
     {
       collection: "posts",

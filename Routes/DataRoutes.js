@@ -5,7 +5,8 @@ const router = express.Router();
 const dataController = require('../controllers/DataController');
 const userController = require('../controllers/UserController');
 const bioController = require('../controllers/BioController');
-const ivpostController = require('../controllers/IvpostController');
+const ivController = require('../controllers/IvController');
+const galleryController = require('../controllers/GalleryController');
 
 
 // regisrer/login routes---------------------------------------------------------
@@ -26,17 +27,28 @@ router.put('/post/:id/update', dataController.updatePost);
 router.delete('/:id/delete', dataController.deletePost);
 
 // routes for posting bible verse image and inputs -------------------------------
-router.post('/postverse', ivpostController.imagePost);//post image
-router.post('/createpostverse', ivpostController.createBibleVerse); //post bible verse
+router.post('/postverse', ivController.imagePost);//post image
+router.post('/postimgverse', ivController.PostImgVerse); //post image and bible verse
 //--------------------------------------------------------------------------------
 
 //rouets for geting bible verse image and inputs 
-router.get('/getimage/:id', ivpostController.getImagePost)//get image 
-router.get('/getverse/:id', ivpostController.getBibleVersePost); //get bible verse by id
+router.get('/getimage/:id', ivController.getImagePost)//get image 
+router.get('/getverse/:id', ivController.getBibleVersePost); //get bible verse by id
+
+// routes to post inputs from Firebase
+router.post('/getinput', galleryController.PostGalleryInput);
+
+// routes to get FireBase Image Urls
+router.get('/geturls', galleryController.getImageUrl);
+router.get('/getinputwaterfall/:id', galleryController.getGalleryInput);
+router.get('/getinputcross/:id', galleryController.getGalleryInput);
+router.get('/getinputfreedom/:id', galleryController.getGalleryInput);
+
+router.get('/geturls/:name', galleryController.getImageUrl);
 
 
 // FOR GALLERY 
-router.post('/waterfall', ivpostController.getImagePost); //get gallery post from imga.js
-router.post('/greenmount', ivpostController.createGalleryVerse); //get gallery post from imgb.js
+router.post('/waterfall', ivController.getBibleVersePost); //get bible verse by id
+router.post('/greenmount', ivController.getBibleVersePost); //get bible verse by id
 
 module.exports = router;

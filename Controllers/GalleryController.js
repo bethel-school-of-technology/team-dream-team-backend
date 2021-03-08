@@ -1,41 +1,52 @@
-// const mongoose = require("mongoose");
-// const getImage = mongoose.model("images");
-// const multer = require("multer");
+const mongoose = require("mongoose");
+const getImgUrls = mongoose.model("firebase");
+const Posts = mongoose.model("posts");
 
-// const fs = require('fs');
-// const storage = multer.diskStorage({
-//     destination: function (req, res, cb) {
-//       cb(null, "/public/images");
-//     },
-//     filename: (req, file, cb) => {
-//         cb(null, Date.now() + '-' +file.originalname)
-//       }
-//     })
-    
-//     const upload = multer({ storage: storage }).single('file')
 
-//   exports.getGalleryImage = (async (req, res) => {
-//     '/create'
-//         upload(req, res, (err) => {
-//           if (err) {
-//             res.sendStatus(500);
-//           }
-//           res.send(req.file);
-//         });
-//       });
-// exports.getGalleryImage = (async (req, res) => {
-//     '/upload'
-//     let new_img = new getImage;
-//     new_img.getImage.data = fs.readFileSync(req.file.path)
-//     new_img.getImage.contentType = 'image/jpeg';  // or 'image/png'
-//     new_img.save();
-    
-// res.json({ message: 'New image added to the db!' });
-// }); exports.getGalleryImage = (async (req, res) => {
-//     getImage.findOne({}, 'img createdAt', function(err, img) {
-//         if (err)
-//             res.send(err);
-//         res.contentType('json');
-//         res.send(getImage);
-//     }).sort({ createdAt: 'desc' });
-// });
+// function gets all urls from firebase in monogo
+exports.getImageUrl = async (req, res) => {
+    const getUrls = await getImgUrls.find()
+    if(!getUrls) res.status(400).send({error : "No Urls were found"})
+    res.status(200).send(getUrls)
+    // console.log('from backend:', getUrls)
+}
+
+/* function to POST gallery input-------------------------------------------------------------*/
+exports.PostGalleryInput = async (req, res) => {
+    console.log(req.body)
+    // res.send("recieved");
+    await new Posts(req.body).save( async (err, data) => {
+      if (err) {
+        // if there is an error send the following response
+        res.status(500).json({
+          message: "Something went wrong, please try again later.",
+        });
+      } else {
+        // if success send the following response
+        res.status(200).json({
+          message: "Post Created",
+          data,
+        });
+      }
+    });
+  };
+  
+  /* function to GET input data by id-------------------------------------------------*/
+exports.getGalleryInput = async (req, res) => {
+    // get id from URL by using req.params
+    let GalInputID = req.params.id;
+    // we use mongodb's findById() functionality here
+    await Posts.findById({ _id: GalInputID }, (err, data) => {
+      if (err) {
+        res.status(500).json({
+          message: "Something went wrong, please try again later.",
+        });
+      } else {
+        console.log(data);
+        res.status(200).json({
+          message: "Post found",
+          data,
+        });
+      }
+    });
+  };

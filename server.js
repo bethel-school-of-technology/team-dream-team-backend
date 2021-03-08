@@ -8,7 +8,7 @@ require('./models/Post');
 require('./models/Token');
 require('./models/Images');
 require('./models/Bio');
-require('./models/Gallery');
+require('./models/FireBase');
 
 //require app.js
 const app = require("./app");

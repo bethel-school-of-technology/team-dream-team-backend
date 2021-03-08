@@ -3,15 +3,14 @@
 const express = require("express"); //import express
 const app = express(); //initalise app with express
 const cors = require("cors");
-const bodyParser = require("body-parser");
 const logger = require("morgan");
 const routes = require("./routes/DataRoutes");
 
 
-app.use(bodyParser.json());
+app.use(express.json());
 //body-parser handles HTTP POST requests.
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 //enable Cross-Origin Resource Sharing.
 app.use(cors());
 

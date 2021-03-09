@@ -2,7 +2,9 @@ const mongoose = require("mongoose");
 
 //create schema
 const BioSchema = new mongoose.Schema({
-Userbio:{body: String}
+    userBio:{
+        type: String
+    }
     });
 
 module.exports = mongoose.model("bios", BioSchema);

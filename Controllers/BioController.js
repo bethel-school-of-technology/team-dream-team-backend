@@ -1,16 +1,16 @@
 const mongoose = require("mongoose");
-const { restart } = require("nodemon");
 const CreateBio = mongoose.model("bios");
 
-exports.baseRoute = async (req, res) => {
-    res.send("Server Running");
-  };
+// exports.baseRoute = async (req, res) => {
+//     res.send("Server Running");
+//   };
 
   exports.createBio = async (req, res) => {
     console.log(req.body);
-  let userBio = new CreateBio({
+  const userBio = new CreateBio({
     userBio: req.body.userBio
   });
+  console.log('userBio:', userBio);
     await userBio.save((err, data) => {
       if (err) {
         // if there is an error send the following response

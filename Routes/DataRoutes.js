@@ -19,6 +19,7 @@ router.get('/verify/:email/:token', userController.confirmEmail);
 
 // router.put('/bio', BioController.updateBio);
 router.post('/createbio', bioController.createBio);
+router.get('/displaybio/:id', bioController.displayBio);
 
 router.get('/profile', dataController.userProfile);
 router.get('/getall', dataController.getPosts);

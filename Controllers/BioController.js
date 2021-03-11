@@ -1,10 +1,15 @@
 const mongoose = require("mongoose");
 const CreateBio = mongoose.model("bios");
 
-// exports.baseRoute = async (req, res) => {
-//     res.send("Server Running");
-//   };
 
+// gets all bios in array
+exports.displayAllBio = async (req, res) => {
+  const getBios = await CreateBio.find()
+  if(!getBios) res.status(400).send({error : "No Urls were found"})
+  res.status(200).send(getBios)
+}
+
+//create bio
   exports.createBio = async (req, res) => {
     console.log(req.body);
   let userBio = new CreateBio({
@@ -26,6 +31,7 @@ const CreateBio = mongoose.model("bios");
       }
     });
   };
+
   exports.displayBio = async (req, res) => {
     // get id from URL by using req.params
     let userBioID = req.params.id;
@@ -46,4 +52,3 @@ const CreateBio = mongoose.model("bios");
       }
     });
   };
-  

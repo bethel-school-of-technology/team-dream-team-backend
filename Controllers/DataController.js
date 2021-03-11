@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const { restart } = require("nodemon");
 const PostMessage = mongoose.model("posts");
 
 var tokenService = require("../services/auth");
@@ -28,6 +27,7 @@ exports.userProfile = async (req, res) => {
         firstName: currentUser.firstName,
         lastName: currentUser.lastName,
         email: currentUser.email,
+        userBio: currentUser.userBio
       };
       res.json({
         message: "User Profile information loaded successfuly",

@@ -12,7 +12,7 @@ exports.displayAllBio = async (req, res) => {
 //create bio
   exports.createBio = async (req, res) => {
     console.log(req.body);
-  const userBio = new CreateBio({
+  let userBio = new CreateBio({
     userBio: req.body.userBio
   });
   console.log('userBio:', userBio);
@@ -32,7 +32,6 @@ exports.displayAllBio = async (req, res) => {
     });
   };
 
-//display bio
   exports.displayBio = async (req, res) => {
     // get id from URL by using req.params
     let userBioID = req.params.id;

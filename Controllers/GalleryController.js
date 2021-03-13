@@ -34,24 +34,39 @@ exports.PostAllInputs = async (req, res) => {
   res.json(data);
 };
 
+/* function to SaveComment */
+/** Find and Update the Posts document */
+exports.SaveComment = async (req, res) => {
+  console.log(req.body);
+  const filter = { _id: req.body._id };
+ const update = { $push: { comment: req.body.comment } };
+  const doc = await Posts.findOneAndUpdate(filter, update, {
+    new: true,
+  });
+  console.log(doc);
+  res.status(200).json({
+    message: "Comment Saved",
+    doc,
+  });
+};
+
 /* function to POST gallery input */
 exports.PostGalleryInput = async (req, res) => {
   console.log(req.body);
   await new Posts({
+    body: req.body,
     _id: req.params.id,
-    body: req.body
-    }
-    ).save(async (err, data) => {
+  }).save(async (err, data) => {
     if (err) {
       console.log("err:", err);
       res.status(500).json({
         message: "Something went wrong, please try again later.",
-        _id: _id
       });
     } else {
       res.status(200).json({
         message: "Post Created",
         data,
+        id: data._id,
       });
     }
   });

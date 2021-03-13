@@ -3,16 +3,12 @@ const PostMessage = mongoose.model("posts");
 
 var tokenService = require("../services/auth");
 
-
-
-//function baseRoute (needed on DataRoute to go to "/")
-//--------------------------------------------------------------------------------------------------
+//function baseRoute 
 exports.baseRoute = async (req, res) => {
   res.send("Server Running");
 };
 
 // function for profile - test by adding header to postman (verifies token)
-//--------------------------------------------------------------------------------------------------
 exports.userProfile = async (req, res) => {
   console.log(req.headers);
   let myToken = req.headers.authorization;
@@ -49,7 +45,6 @@ exports.userProfile = async (req, res) => {
 };
 
 // function get all posts
-//--------------------------------------------------------------------------------------------------
 exports.getPosts = async (req, res) => {
   const data = await PostMessage.find(); //query the database
   res.json(data); //send var as a json
@@ -57,7 +52,6 @@ exports.getPosts = async (req, res) => {
 
 
 //function to get a single post
-//--------------------------------------------------------------------------------------------------
 exports.getSinglePost = async (req, res) => {
   // get id from URL by using req.params
   let postID = req.params.id;
@@ -78,7 +72,6 @@ exports.getSinglePost = async (req, res) => {
 };
 
 //function to update a single post
-//--------------------------------------------------------------------------------------------------
 exports.updatePost = async (req, res) => {
   let postID = req.params.id;
   await PostMessage.findByIdAndUpdate(
@@ -100,7 +93,6 @@ exports.updatePost = async (req, res) => {
 };
 
 //function to delete a single post
-//--------------------------------------------------------------------------------------------------
 exports.deletePost = async (req, res) => {
   let postID = req.params.id;
   await PostMessage.deleteOne({ _id: postID }, (err, data) => {

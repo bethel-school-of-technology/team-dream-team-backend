@@ -98,9 +98,9 @@ exports.userInfo = async (req, res, next) => {
           to: user.email,
           subject: "Account Verification Token",
           text:
-            "Hello " +
+            "Hello there!"
             req.body.name +
-            ",\n\n" +
+            "\n\n" +
             "Please verify your account by clicking the link: \nhttp://" +
             req.headers.host +
             "/verify/" +

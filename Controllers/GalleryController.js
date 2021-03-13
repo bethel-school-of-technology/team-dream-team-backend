@@ -52,23 +52,21 @@ exports.SaveComment = async (req, res) => {
 
 /* function to POST gallery input */
 exports.PostGalleryInput = async (req, res) => {
-  console.log(req.body);
-  await new Posts({
-    body: req.body,
-    _id: req.params.id,
-  }).save(async (err, data) => {
+  console.log(req.body)
+  // res.send("recieved");
+  await new Posts(req.body).save( async (err, data) => {
     if (err) {
-      console.log("err:", err);
+      console.log('err:', err);
+      // if there is an error send the following response
       res.status(500).json({
         message: "Something went wrong, please try again later.",
       });
     } else {
-      res.status(200).json({
-        message: "Post Created",
-        data,
-        id: data._id,
-      });
-    }
+          res.status(200).json({
+            message: "Post Created",
+            data
+          });
+       }
   });
 };
 

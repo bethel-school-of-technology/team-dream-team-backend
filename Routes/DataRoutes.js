@@ -17,6 +17,7 @@ router.get('/geturls/:name', galleryController.getImageUrl);
 router.get('/geturls', galleryController.getImageUrl);
 router.get('/geturls/:id', galleryController.getImgUrlID);
 router.post('/postinput', galleryController.PostGalleryInput);
+router.post('/savecomment', galleryController.SaveComment);
 router.get('/getall', galleryController.PostAllInputs);
 router.post('/createbio', BioController.createBio);
 router.get('/displaybio/:id', BioController.displayBio); 
